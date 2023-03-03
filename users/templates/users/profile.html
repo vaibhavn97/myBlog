@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container-sm">
+    <div>
+        <img src="{{prof.profile_pic.url}}" alt="{{prof.user}}" style="width: 100px; height: 100px;  border-radius: 100%;">
+    </div>
+    <div> {{prof.first_name}} {{prof.last_name}}</div>
+    <div>
+      {{prof.user}}
+    </div>
+    <div>
+      {{prof.bio}}
+    </div>
+    {% if request.user == prof.user %}
+      <div class="container-sm my-5">
+        <form class="w-50" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="input-group mb-3">
+            {% render_field form.profile_pic class='form-control'  %}
+            </div><label class="input-group-text" for="inputGroupFile02">Enter Profile Picture</label>
+          <div class="mb-3">
+            <label for="id_first_name" class="form-label">Enter First Name</label>
+            {% render_field form.first_name class='form-control' %}
+          </div>
+          <div class="mb-3">
+            <label for="id_last_name" class="form-label"  >Enter Last Name</label>
+            {% render_field form.last_name class='form-control' %}
+          </div>
+          <div class="mb-3">
+            <label for="bio" class="form-label"  >Enter Bio</label>
+            {% render_field form.bio class='form-control' %}
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+          </div>
+        </form>
+      </div>
+    {% endif %}
+</div>
+
+
+{% endblock content %}

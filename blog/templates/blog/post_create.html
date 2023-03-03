@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container-sm my-3">
+    <form  method="post" class="w-25">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_title" class="form-label">Enter Title</label>
+            {% render_field form.title class='form-control' %}
+        </div>
+        <div class="mb-3">
+            <label for="id_desc" class="form-label">Enter Description</label>
+            {% render_field form.desc class='form-control' %}
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Add Post</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

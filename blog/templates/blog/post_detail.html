@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+
+<div class="container-sm">
+    <h1>{{post.title}}</h1>
+    <i>{{post.author}} - {{post.date_posted|date:"d M Y" }}</i>
+    <p>{{post.desc}}</p>
+</div>
+
+<div class="container-sm">
+    {% if post.author == user %}
+        <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Update Post</a>
+        <a href="{% url 'post-delete' post.pk %}" class="btn btn-primary">Delete Post</a>
+
+    {% endif %}
+</div>
+
+
+{% endblock content %}
